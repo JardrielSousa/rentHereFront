@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { CarRentComponent } from './pages/car-rent/car-rent.component';
@@ -35,7 +37,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatNativeDateModule,
     HttpClientModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatStepperModule,
+    MatSelectModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

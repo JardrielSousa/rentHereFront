@@ -1,12 +1,12 @@
 <div class="container">
   <div>
-    <h1>Add Car Rent</h1>
+    <h1>{{isCreate?'Add ': (isDelete)?'Delete ':'Edit '}} Car Rent</h1>
   </div>
-  <form class="form" [formGroup]="carForm" (ngSubmit)="onSubmit()">
+  <form class="form" [formGroup]="carForm" (ngSubmit)="isDelete ? ondelete() : onSubmit()">
 
     <label>
       Plaque:
-      <input type="text" name="plaque" placeholder="ABC-1234" formControlName="plaque" required >
+      <input type="text" [value]="car?.plaque" name="plaque" formControlName="plaque" required >
       <div>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.plaque.errors && f.plaque.errors.required">Required field</mat-error>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.plaque.errors && f.plaque.errors.minlength">Field must have at least 4 characters</mat-error>
@@ -15,7 +15,7 @@
     </label>
     <label>
       Model:
-      <input type="text" name="model" placeholder="Corsa Classic 07/08 completo" formControlName="model" required >
+      <input type="text" [value]="car?.model" name="model" placeholder="Corsa Classic 07/08 completo" formControlName="model" required >
       <div>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.model.errors && f.model.errors.required">Required field</mat-error>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.model.errors && f.model.errors.minlength">Field must have at least 4 characters</mat-error>
@@ -24,7 +24,7 @@
     </label>
     <label>
       Rent price:
-      <input type="text" name="rentPrice" placeholder="50 R$/Dia" formControlName="rentPrice" required >
+      <input type="text" [value]="car?.rentPrice" name="rentPrice" placeholder="50 R$/Dia" formControlName="rentPrice" required >
       <div>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.rentPrice.errors && f.rentPrice.errors.required">Required field</mat-error>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.rentPrice.errors && f.rentPrice.errors.minlength">Field must have at least 4 characters</mat-error>
@@ -33,7 +33,7 @@
     </label>
     <label>
       Quantity:
-      <input type="text" name="quantity" placeholder="1" formControlName="quantity" required >
+      <input type="text" [value]="car?.quantity" name="quantity" placeholder="1" formControlName="quantity" required >
       <div>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.quantity.errors && f.quantity.errors.required">Required field</mat-error>
         <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.quantity.errors && f.quantity.errors.minlength">Field must have at least 4 characters</mat-error>
@@ -41,6 +41,7 @@
       </div>
     </label>
     <br>
-    <button  mat-raised-button color="accent" type="submit">submit</button>
+    <button  mat-raised-button [color]="isDelete ? 'warn' : 'accent'" type="submit">{{ isCreate?'Create ': (isDelete)?'Delete ':'Edit '}} Car</button>
+    <button *ngIf="isDelete"  mat-stroked-button color="confirm" routerLink="/home">Cancel</button>
     </form>
     </div>

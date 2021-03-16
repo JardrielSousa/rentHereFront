@@ -1,0 +1,6 @@
+export enum Payment {
+  INCASH = 'INCASH' ,
+  CREDITCARD = 'CREDITCARD',
+  DEBITCARD = 'DEBITCARD' ,
+  TRANSFER = 'TRANSFER'
+}

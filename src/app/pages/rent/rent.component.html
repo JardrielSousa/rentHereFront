@@ -1,1 +1,110 @@
-<p>rent works!</p>
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="carForm" errorMessage="Address is required.">
+    <form [formGroup]="carForm">
+      <ng-template matStepLabel>Select a car</ng-template>
+        <mat-label>Car available</mat-label>
+        <mat-select [(value)]="selected" formControlName="car" required>
+          <mat-option [value]="1">None</mat-option>
+          <mat-option [value]="item" *ngFor="let item of cars">{{item.model}}</mat-option>
+        </mat-select>
+      <div>
+        <p>click for select a car<p>
+          <mat-error *ngIf="(carForm.touched || carForm.dirty) && c.car.errors && c.car.errors.required">Required field</mat-error>
+        <button mat-button matStepperNext class="button-confirm">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="userForm" errorMessage="Name is required.">
+    <form class="form" [formGroup]="userForm" (ngSubmit)="onSubmitUser()">
+      <ng-template matStepLabel>Fill out your personal data</ng-template>
+      <label>
+        Name:
+        <input type="text" name="name" formControlName="name" required >
+        <div>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.name.errors && f.name.errors.required">Required field</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.name.errors && f.name.errors.minlength">Field must have at least 4 characters</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.name.errors && f.name.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+        </div>
+      </label>
+      <label>
+        Email:
+        <input type="text" name="email" formControlName="email"  required >
+        <div>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.email.errors && f.email.errors.required">Required field</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.email.errors && f.email.errors.email">Please enter valid email</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.email.errors && f.email.errors.minlength">Field must have at least 4 characters</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.email.errors && f.email.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+        </div>
+      </label>
+      <label>
+        Phone Number:
+        <input type="text" name="phone" formControlName="phoneNumber" required >
+        <div>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.phoneNumber.errors && f.phoneNumber.errors.required">Required field</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.phoneNumber.errors && f.phoneNumber.errors.minlength">Field must have at least 4 characters</mat-error>
+          <mat-error *ngIf="(userForm.touched || userForm.dirty) && f.phoneNumber.errors && f.phoneNumber.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+        </div>
+      </label>
+      <button mat-button matStepperNext class="button-confirm">Next</button>
+      <button mat-stroked-button matStepperPrevious class="button-back">Back</button>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>check your data and finalizes.</p>
+    <form  class="form" [formGroup]="rentForm" (ngSubmit)="onSubmitRent()">
+      <label>
+        Name:
+        <input type="text" name="name" [value]="user?.name" disabled required >
+      </label>
+      <label>
+        Email:
+        <input type="text" name="email"  [value]="user?.email" disabled required >
+      </label>
+      <label>
+        Phone Number:
+        <input type="text" name="phone"  [value]="user?.phoneNumber" disabled required >
+      </label>
+      <label>
+        Car Selected:
+        <input type="text" name="phone"  [value]="selected?.model" disabled required >
+      </label>
+      <label>
+        PickUp:
+        <div>
+            <input matInput [matDatepicker]="picker" name="pickup" formControlName="pickup" (click)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <div>
+          <mat-error *ngIf="(rentForm.touched || rentForm.dirty) && r.pickup.errors && r.pickup.errors.required">Required field</mat-error><br>
+        </div>
+      </label>
+      <label>
+        Devolution:
+        <div>
+            <input matInput [matDatepicker]="pickerdevolution" name="devolution" formControlName="devolution" (click)="picker.open()">
+            <mat-datepicker-toggle matSuffix [for]="pickerdevolution"></mat-datepicker-toggle>
+            <mat-datepicker #pickerdevolution></mat-datepicker>
+        </div>
+        <div>
+          <mat-error *ngIf="(rentForm.touched || rentForm.dirty) && r.devolution.errors && r.devolution.errors.required">Required field</mat-error><br>
+        </div>
+      </label>
+      <label>
+        <mat-label>Select an option</mat-label>
+        <mat-select name="payment" formControlName="payment" required>
+          <mat-option [value]="1">None</mat-option>
+          <mat-option value="INCASH">INCASH</mat-option>
+          <mat-option value="CREDITCARD">CREDITCARD</mat-option>
+          <mat-option value="DEBITCARD">DEBITCARD</mat-option>
+          <mat-option value="TRANSFER">TRANSFER</mat-option>
+        </mat-select>
+      </label>
+      <div>
+        <button mat-button class="button-confirm" (click)="onSubmitRent()">Submit</button>
+        <button mat-button (click)="stepper.reset()" class="button-back">Reset</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>

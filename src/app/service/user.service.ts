@@ -1,15 +1,15 @@
+import { environment } from './../../environments/environment';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarRentService {
+export class UserService {
 
-  baseUrl = `${environment.url}car`;
+  baseUrl = `${environment.url}user`;
   constructor(private http: HttpClient,
     private snackBar:MatSnackBar) { }
 
