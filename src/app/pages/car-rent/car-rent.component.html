@@ -1,0 +1,46 @@
+<div class="container">
+  <div>
+    <h1>Add Car Rent</h1>
+  </div>
+  <form class="form" [formGroup]="carForm" (ngSubmit)="onSubmit()">
+
+    <label>
+      Plaque:
+      <input type="text" name="plaque" placeholder="ABC-1234" formControlName="plaque" required >
+      <div>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.plaque.errors && f.plaque.errors.required">Required field</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.plaque.errors && f.plaque.errors.minlength">Field must have at least 4 characters</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.plaque.errors && f.plaque.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+      </div>
+    </label>
+    <label>
+      Model:
+      <input type="text" name="model" placeholder="Corsa Classic 07/08 completo" formControlName="model" required >
+      <div>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.model.errors && f.model.errors.required">Required field</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.model.errors && f.model.errors.minlength">Field must have at least 4 characters</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.model.errors && f.model.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+      </div>
+    </label>
+    <label>
+      Rent price:
+      <input type="text" name="rentPrice" placeholder="50 R$/Dia" formControlName="rentPrice" required >
+      <div>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.rentPrice.errors && f.rentPrice.errors.required">Required field</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.rentPrice.errors && f.rentPrice.errors.minlength">Field must have at least 4 characters</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.rentPrice.errors && f.rentPrice.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+      </div>
+    </label>
+    <label>
+      Quantity:
+      <input type="text" name="quantity" placeholder="1" formControlName="quantity" required >
+      <div>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.quantity.errors && f.quantity.errors.required">Required field</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.quantity.errors && f.quantity.errors.minlength">Field must have at least 4 characters</mat-error>
+        <mat-error *ngIf="(carForm.touched || carForm.dirty) && f.quantity.errors && f.quantity.errors.maxlength">Field can have a maximum of 256 characters</mat-error>
+      </div>
+    </label>
+    <br>
+    <button  mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+    </div>
