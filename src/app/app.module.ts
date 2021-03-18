@@ -18,6 +18,8 @@ import { RentComponent } from './pages/rent/rent.component';
 import { NavComponent } from './pages/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { ListCarRentComponent } from './pages/list-car-rent/list-car-rent.component';
+import { ListRentComponent } from './pages/list-rent/list-rent.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     CarRentComponent,
     HomeComponent,
     RentComponent,
-    NavComponent   ],
+    NavComponent,
+    ListCarRentComponent,
+    ListRentComponent   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

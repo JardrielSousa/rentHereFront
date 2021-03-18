@@ -2,8 +2,8 @@
   <mat-step [stepControl]="carForm" errorMessage="Address is required.">
     <form [formGroup]="carForm">
       <ng-template matStepLabel>Select a car</ng-template>
-        <mat-label>Car available</mat-label>
-        <mat-select [(value)]="selected" formControlName="car" required>
+        <mat-label>{{selected}}</mat-label>
+        <mat-select [value]="selected" formControlName="car" required>
           <mat-option [value]="1">None</mat-option>
           <mat-option [value]="item" *ngFor="let item of cars">{{item.model}}</mat-option>
         </mat-select>
@@ -102,7 +102,7 @@
         </mat-select>
       </label>
       <div>
-        <button mat-button class="button-confirm" (click)="onSubmitRent()">Submit</button>
+        <button mat-button class="button-confirm">Submit</button>
         <button mat-button (click)="stepper.reset()" class="button-back">Reset</button>
       </div>
     </form>

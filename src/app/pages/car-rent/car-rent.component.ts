@@ -17,7 +17,6 @@ export class CarRentComponent implements OnInit {
   isCreate:any;
   isDeleteOrEdit:boolean=false;
   car:ICar;
-  customPatterns = { '0': { pattern: new RegExp('\[a-zA-Z\]')} };
   constructor(private fb: FormBuilder,
     private router:Router,
     private carRentService:CarRentService,
@@ -77,14 +76,14 @@ export class CarRentComponent implements OnInit {
       return;
       this.carRentService.create(this.carForm.value).subscribe((resp:any)=>{
         this.carRentService.verMsg('car was created!!!')
-        this.router.navigate(['home'])
+        this.router.navigate(['listCarRent'])
       });
   }
 
   ondelete(){
     this.carRentService.delete(this.id)
     .subscribe((resp:any)=>{
-      this.router.navigate(['home'])
+      this.router.navigate(['listCarRent'])
     });
   }
 
